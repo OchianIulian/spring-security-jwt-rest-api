@@ -3,6 +3,7 @@ Repository-ul spring-security-jwt-rest-api conține o aplicație RESTful dezvolt
 
 ## Caracteristici principale
 
+#### TO DO:
 1. Autentificare cu JWT: Utilizatorii sunt autentificați folosind JSON Web Tokens (JWT), un mecanism modern și sigur de autentificare stateless.
 2. Spring Security: Aplicația utilizează Spring Security pentru gestionarea securității și a autentificării, asigurând protecția resurselor și a rutele API.
 3. Diverse tipuri de utilizatori: Aplicația gestionează doi tipuri diferite de utilizatori, fiecare cu privilegii și acces specific la resursele API.
