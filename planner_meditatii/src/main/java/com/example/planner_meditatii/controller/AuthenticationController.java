@@ -1,5 +1,9 @@
-package com.example.planner_meditatii.auth;
+package com.example.planner_meditatii.controller;
 
+import com.example.planner_meditatii.auth.AuthenticationRequest;
+import com.example.planner_meditatii.auth.AuthenticationResponse;
+import com.example.planner_meditatii.service.AuthenticationService;
+import com.example.planner_meditatii.auth.RegisterRequest;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

@@ -1,5 +1,6 @@
 package com.example.planner_meditatii.config;
 
+import com.example.planner_meditatii.service.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;

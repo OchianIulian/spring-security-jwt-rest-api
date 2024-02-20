@@ -1,4 +1,4 @@
-package com.example.planner_meditatii.config;
+package com.example.planner_meditatii.service;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
