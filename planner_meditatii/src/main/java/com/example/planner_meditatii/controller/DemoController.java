@@ -3,6 +3,7 @@ package com.example.planner_meditatii.controller;
 import com.example.planner_meditatii.service.DemoService;
 import com.example.planner_meditatii.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -49,14 +50,14 @@ public class DemoController {
         return demoService.isEnabled(authentication);
     }
 
-//    @DeleteMapping("/delete")
-//    public void deleteUser(Authentication authentication){
-//        demoService.deleteByUsername(demoService.currentEmail(authentication));
-//    }
-
-
-
-
-
-
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteUser(Authentication authentication) {
+        if (demoService != null) {
+            demoService.deleteByUsername(authentication);
+            return ResponseEntity.ok("User deleted successfully");
+        } else {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Demo service is not initialized");
+        }
+    }
 }

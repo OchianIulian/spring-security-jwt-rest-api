@@ -5,6 +5,8 @@ import com.example.planner_meditatii.users.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
@@ -70,20 +72,34 @@ public class DemoService {
         return "Is enabled:" + enabled;
     }
 
-//    @Transactional
-//    public void deleteByUsername(String username) {
-//        // Find the user by username
-//        Optional<User> userOptional = userRepository.findByEmail(username);
-//
-//        // Check if the user exists
-//        if (userOptional.isPresent()) {
-//            User user = userOptional.get();
-//
-//            // Delete the user
-//            userRepository.delete(user);
-//        } else {
-//            // Throw an exception or handle the case where the user does not exist
-//            throw new EntityNotFoundException("User with username " + username + " not found");
-//        }
-//    }
+    public void deleteByUsername(Authentication authentication) {
+        //Obtain userEmail
+        String currentUserEmail;
+        Object principal = authentication.getPrincipal();
+        if (principal instanceof UserDetails) {
+            UserDetails userDetails = (UserDetails) principal;
+
+            // Retrieve the email from the UserDetails object
+            currentUserEmail =  userDetails.getUsername().trim(); // Assuming email is stored in the username field
+        } else {
+            // If the principal is not of type UserDetails, return null or handle the case accordingly
+            currentUserEmail = null;
+            ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body("Error at obtaining email");
+        }
+
+        // Find the user by username
+        Optional<User> userOptional = userRepository.findByEmail(currentUserEmail);
+        // Check if the user exists
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+
+            // Delete the user
+            userRepository.delete(user);
+        } else {
+            // Throw an exception or handle the case where the user does not exist
+            //throw new EntityNotFoundException("User with username " + username + " not found");
+            System.out.println("user not found by this email");
+        }
+    }
 }
