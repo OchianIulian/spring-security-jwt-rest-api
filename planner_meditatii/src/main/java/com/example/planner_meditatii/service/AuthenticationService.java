@@ -29,6 +29,10 @@ public class AuthenticationService {
         } else {
             throw new RuntimeException("Must add Role");
         }
+        var checkUser= repository.findByEmail(request.getEmail());
+        if(checkUser.isPresent()){
+            throw new RuntimeException("This user with this email already exists");
+        }
         repository.save(user);
         var jwtToken =  service.generateToken(user);
 
