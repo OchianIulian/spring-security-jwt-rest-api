@@ -1,5 +1,5 @@
 # spring-security-jwt-rest-api
-Repository-ul spring-security-jwt-rest-api conține o aplicație RESTful dezvoltată în Java utilizând framework-ul Spring Boot. Această aplicație implementează un sistem de autentificare securizat folosind JSON Web Tokens (JWT) prin intermediul Spring Security.
+Repository ul spring-security-jwt-rest-api contine un sistem de autentificare și un API pentru o aplicație web, implementat folosind JWT (JSON Web Tokens). Scopul principal al proiectului este de a oferi funcționalitate de autentificare securizată și scalabilă pentru utilizatori, utilizând tokenuri JWT pentru a gestiona sesiunile și autorizarea în aplicație.
 
 ## Caracteristici principale
 
