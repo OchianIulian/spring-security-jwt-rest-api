@@ -26,21 +26,11 @@ public class User implements UserDetails {
     private String lastName;
     private String email;
     private String password;
-    private boolean locked;
-    private boolean enabled;
+    private boolean locked = false;
+    private boolean enabled = false;
     @Enumerated(EnumType.STRING)//tells Spring that role is an enum
     private Role role;
 
-
-    public User(String firstName, String lastName, String email, String password, boolean locked, boolean enabled, Role role) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
-        this.password = password;
-        this.locked = locked;
-        this.enabled = enabled;
-        this.role = role;
-    }
 
     //Urmatoarele metode sunt din UserDetails
     @Override
@@ -60,7 +50,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        return true;
+        return !locked;
     }
 
     @Override
@@ -70,6 +60,6 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 }
