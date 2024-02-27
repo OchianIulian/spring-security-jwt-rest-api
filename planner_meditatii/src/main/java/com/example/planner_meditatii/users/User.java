@@ -9,6 +9,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * Clasa model pentru tabela user
+ */
 @Data//Generates getters and setters for the class
 @Builder//Build the object with the design pattern builder
 @NoArgsConstructor

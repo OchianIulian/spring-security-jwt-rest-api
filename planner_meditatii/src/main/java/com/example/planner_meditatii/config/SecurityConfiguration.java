@@ -11,7 +11,7 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
- *Security Configuration use the filter
+ * Aceasta clasa stabileste daca anumite requesturi vor fi executate in functie de starea utilizatorului, logat/nelogat
  */
 @Configuration
 @EnableWebSecurity

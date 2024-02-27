@@ -4,7 +4,6 @@ import com.example.planner_meditatii.auth.AuthenticationRequest;
 import com.example.planner_meditatii.auth.AuthenticationResponse;
 import com.example.planner_meditatii.auth.RegisterRequest;
 import com.example.planner_meditatii.email.EmailSender;
-import com.example.planner_meditatii.mails.EmailValidator;
 import com.example.planner_meditatii.mails.token.ConfirmTokenRepository;
 import com.example.planner_meditatii.mails.token.ConfirmationToken;
 import com.example.planner_meditatii.mails.token.ConfirmationTokenService;

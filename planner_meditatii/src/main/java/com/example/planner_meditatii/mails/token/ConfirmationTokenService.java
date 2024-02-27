@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+/**
+ * Se ocupa cu operatiile legate de ConfirmationToken
+ */
 @Service
 @AllArgsConstructor
 public class ConfirmationTokenService {

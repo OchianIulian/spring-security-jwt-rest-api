@@ -6,6 +6,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * This class offers a body for signing up
+ */
 @Data
 @Builder
 @NoArgsConstructor

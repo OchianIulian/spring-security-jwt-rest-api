@@ -9,6 +9,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+/**
+ * Gestioneaza userii in baza de date
+ */
 @Repository
 @Transactional(readOnly = true)
 public interface UserRepository extends JpaRepository<User, Long> {

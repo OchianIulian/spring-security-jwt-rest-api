@@ -7,6 +7,9 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
+/**
+ * Clasa model pentru tokenul de confirmare
+ */
 @Data
 @NoArgsConstructor
 @Entity

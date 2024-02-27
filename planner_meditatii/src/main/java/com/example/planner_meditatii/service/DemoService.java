@@ -2,7 +2,6 @@ package com.example.planner_meditatii.service;
 
 import com.example.planner_meditatii.users.User;
 import com.example.planner_meditatii.users.UserRepository;
-import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,17 +9,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import java.util.Optional;
 
+
+/**
+ * Construieste logica requesturilor din DemoController
+ */
 @Service
 @RequiredArgsConstructor
 public class DemoService {
 
     @Autowired
     private final UserRepository userRepository;
-
 
 
     public final String currentUserDetails(Authentication authentication){

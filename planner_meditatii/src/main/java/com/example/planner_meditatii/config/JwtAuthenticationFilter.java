@@ -17,9 +17,11 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import java.io.IOException;
 
+/**
+ * Aceasta clasa proceseaza JWT urile si realizeaza autentificarea utilizatorilor
+ */
 @Component//make the class to become a Spring bean
 @RequiredArgsConstructor
-
 public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private final JwtService jwtService;

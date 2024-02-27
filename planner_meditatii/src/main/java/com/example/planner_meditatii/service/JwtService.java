@@ -16,6 +16,7 @@ import java.util.function.Function;
 
 
 /**
+ * Se ocupa cu operatiile asupra tokenului JWT
  * JwtService e o clasa care poate fi copiata sau imbunatatita in orice alt proiect care foloseste Spring Security
  */
 @Service

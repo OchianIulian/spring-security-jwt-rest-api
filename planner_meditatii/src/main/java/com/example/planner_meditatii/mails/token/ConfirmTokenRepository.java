@@ -10,6 +10,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+/**
+ * Opereaza tokenul in baza de date
+ */
 @Repository
 public interface ConfirmTokenRepository extends JpaRepository<ConfirmationToken, Integer> {
     Optional<ConfirmationToken> findByToken(String token);

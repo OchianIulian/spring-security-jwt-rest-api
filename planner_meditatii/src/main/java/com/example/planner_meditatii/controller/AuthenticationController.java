@@ -2,25 +2,22 @@ package com.example.planner_meditatii.controller;
 
 import com.example.planner_meditatii.auth.AuthenticationRequest;
 import com.example.planner_meditatii.auth.AuthenticationResponse;
-import com.example.planner_meditatii.mails.token.ConfirmationToken;
 import com.example.planner_meditatii.mails.token.ConfirmationTokenService;
 import com.example.planner_meditatii.service.AuthenticationService;
 import com.example.planner_meditatii.auth.RegisterRequest;
 import com.example.planner_meditatii.service.DemoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-
+/**
+ * In aceasta clasa se gasesc endpointurile pentru authentificarea si inregistrarea utilizatorilor
+ */
 @RestController
 @RequestMapping("/api/v1/auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
     private final AuthenticationService service;
-    private final ConfirmationTokenService confirmationTokenService;
-    private final DemoService demoService;
 
     @PostMapping("/register")
     public ResponseEntity<AuthenticationResponse> register(
