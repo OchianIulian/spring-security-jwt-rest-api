@@ -5,12 +5,14 @@ import com.example.planner_meditatii.auth.AuthenticationResponse;
 import com.example.planner_meditatii.auth.RegisterRequest;
 import com.example.planner_meditatii.email.EmailSender;
 import com.example.planner_meditatii.mails.EmailValidator;
+import com.example.planner_meditatii.mails.token.ConfirmTokenRepository;
 import com.example.planner_meditatii.mails.token.ConfirmationToken;
 import com.example.planner_meditatii.mails.token.ConfirmationTokenService;
 import com.example.planner_meditatii.users.Role;
 import com.example.planner_meditatii.users.User;
 import com.example.planner_meditatii.users.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -31,6 +33,8 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
     private final ConfirmationTokenService confirmationTokenService;
     private final EmailSender emailSender;
+    @Autowired
+    private final ConfirmTokenRepository confirmTokenRepository;
 
 
     public AuthenticationResponse register(RegisterRequest request) {
@@ -44,12 +48,16 @@ public class AuthenticationService {
         }
         var checkUser= repository.findByEmail(request.getEmail());
         //check if the user is already registered with this email
-        if(checkUser.isPresent()){
+        if(checkUser.isPresent() && user.isEnabled() == false){
+            // resend the email if the user exists and the email is not confirmed
+            System.out.println("We sent you an email to activate your account.");
+        } else if(checkUser.isPresent() && user.isEnabled() ==  true){
             throw new RuntimeException("This user with this email already exists");
         }
-        repository.save(user);
 
-        //todo: Send confirmation token
+        if(checkUser.isPresent() == false)
+            repository.save(user);
+
         sendConfirmationEmail(user, request);
 
         var jwtToken =  service.generateToken(user);
@@ -69,14 +77,23 @@ public class AuthenticationService {
         );
 
 
-        String link = "http://localhost:8080/api/v1/auth/confirm_email?token=" + token;
-        emailSender.send(request.getEmail(), buildEmail(request.getFirstName(), link));
+        if(isTokenAvailable(user) == false || LocalDateTime.now().isAfter(confirmationToken.getExpiresAt())){
+            String link = "http://localhost:8080/api/v1/auth/confirm_email?token=" + token;
+            emailSender.send(request.getEmail(), buildEmail(request.getFirstName(), link));
 
 
-        confirmationTokenService.saveConfirmationToken(confirmationToken);
+            confirmationTokenService.saveConfirmationToken(confirmationToken);
+        } else {
+            throw new RuntimeException("User already exists cand you must confirm the email");
+        }
+    }
 
-        //todo: Send email
-
+    private boolean isTokenAvailable(User user) {
+        /*
+        Integer id = user.getId();
+        if(confirmTokenRepository.existsById(id) == true) return true;
+        return false;*/
+        return confirmTokenRepository.existsByUser(user);
     }
 
     private String buildEmail(String name, String link) {
