@@ -16,12 +16,14 @@ Repository ul spring-security-jwt-rest-api contine un sistem de autentificare ș
 
 ## Features
 1. Autentificare cu JWT: Utilizatorii sunt autentificați folosind JSON Web Tokens (JWT), un mecanism modern și sigur de autentificare stateless.
-2. Spring Security: Aplicația utilizează Spring Security pentru gestionarea securității și a autentificării, asigurând protecția resurselor și a rutele API.
-3. Diverse tipuri de utilizatori: Aplicația gestionează doi tipuri diferite de utilizatori, fiecare cu privilegii și acces specific la resursele API.
-4. RESTful API: Interfețele de programare a aplicației sunt proiectate conform principiilor arhitecturii REST, oferind operații CRUD pentru resursele gestionate.
-5. Documentație Swagger: Oferă documentație API generată automat cu ajutorul Swagger, pentru a facilita înțelegerea și utilizarea serviciilor expuse.
-6. Testare unitară și integrată: Aplicația include suite de teste unitare și integrate pentru a asigura funcționalitatea corectă și stabilitatea sistemului.
-7. Configurabil și extensibil: Componentele aplicației sunt configurabile și extensibile, permițând adaptarea la cerințe specifice ale proiectelor.
+2. Confirmarea mailului prin trimiterea unui email cu un token de confirmare.
+3. Spring Security: Aplicația utilizează Spring Security pentru gestionarea securității și a autentificării, asigurând protecția resurselor și a rutele API.
+4. Diverse tipuri de utilizatori: Aplicația gestionează doi tipuri diferite de utilizatori, fiecare cu privilegii și acces specific la resursele API.
+5. RESTful API: Interfețele de programare a aplicației sunt proiectate conform principiilor arhitecturii REST, oferind operații CRUD pentru resursele gestionate.
+6. Configurabil și extensibil: Componentele aplicației sunt configurabile și extensibile, permițând adaptarea la cerințe specifice ale proiectelor.
+
+### Todo:
+Testare unitară și integrată: Aplicația include suite de teste unitare și integrate pentru a asigura funcționalitatea corectă și stabilitatea sistemului.
 
 
 ## Installation
@@ -60,22 +62,45 @@ Once the application is up and running, you can access it at http://localhost:80
 
 ## API Endpoints
 List of available API endpoints with a brief description of each:
-- `/endpoint1`: Description of what this endpoint does.
-- `/endpoint2`: Description of what this endpoint does.
-- ...
+* Authentication endpoints:
+  * Post
+    - `/api/v1/auth/register`
+    - `/api/v1/auth/authenticate`
+  * Get  
+    - `/api/v1/auth/confirm_email`
+- Secured endpoints (after authentication):
+  - Get
+    - `/api/v1/demo-controller/hellomsg`
+    - `/api/v1/demo-controller/current-user-details`
+    - `/api/v1/demo-controller/current-email`
+    - `/api/v1/demo-controller/is-locked`
+    - `/api/v1/demo-controller/is-expired`
+    - `/api/v1/demo-controller/is-enabled`
+  - Delete
+    - `/api/v1/demo-controller/delete`
 
+  
 ## Authentication
-Explanation of how authentication works in the project, particularly focusing on JWT token authentication. Include details on how to obtain and use JWT tokens for authentication.
-
+  Authentication in the project relies on JWT token authentication. 
+  Users obtain JWT tokens by logging in, which are then sent with requests
+  to access protected endpoints. 
 ## Email Confirmation
-Explanation of the email confirmation process, including how users can confirm their email addresses and the purpose of email confirmation in the project.
+  An email confirmation process is also
+  implemented. Tokens expire and can be refreshed. This ensures secure and
+  stateless authentication for users.
 
 ## Built With
-- Java Spring Framework: Version X.X.X
-- Other libraries or frameworks used in the project.
+- Spring Boot Starter Data JPA
+- Spring Boot Starter Security
+- Spring Boot Starter Web
+- JWT API (io.jsonwebtoken:jjwt-api:0.11.5)
+- JWT Implementation (io.jsonwebtoken:jjwt-impl:0.11.5)
+- JWT Jackson (io.jsonwebtoken:jjwt-jackson:0.11.5)
+- MySQL Connector (com.mysql:mysql-connector-j)
+- Lombok (org.projectlombok:lombok)
+- Spring Boot Starter Test
+- Spring Security Test
+- Spring Boot Starter Mail
 
-## Contributing
-Guidelines for contributing to the project. Include information on how to report issues, submit feature requests, and contribute code.
-
-## License
-Information about the project's license. Specify the license type and provide a link to the full license text if applicable.
+## Authors
+OchianIulian
