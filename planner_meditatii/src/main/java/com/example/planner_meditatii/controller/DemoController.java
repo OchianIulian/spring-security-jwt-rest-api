@@ -9,7 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * In aceasta clasa se gasesc endpointurile ce sunt accesibile utilizatorului dupca ce s-a logat
+ * In aceasta clasa se gasesc endpointurile ce sunt accesibile utilizatorului dupa ce s-a logat
  */
 @RestController
 @RequestMapping("/api/v1/demo-controller")
